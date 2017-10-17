@@ -28,13 +28,12 @@ Explain in your report:
 • the rationale for your design (why is it an effective representation for the things you intend to show?)  
 • in the beginning of the report, describe your team with names and PITT IDs of all members, and one paragraph to briefly describe the contribution of each member  
 
-<<<<<<< HEAD
 ## Notice:
 The model.html is the graph we chosen. All necessery css and js are under script folder. The data for model.html is miserables.json.
 The graph.html is what lin's example. Data is also miserables.json.
 All of our work should like the first one p1/p2.html at root folder, js and css codes in script folder, but put data.json in the data folder. 
 After work, we will remove all other unnecessery things.
-=======
+
 
 [Reference](http://bl.ocks.org/hungvietdo/7f8df0bcd7fba7e531e6)
->>>>>>> 64ec648925bf5dc5b3d00745c557b207e96c0d75
+
