@@ -22,7 +22,11 @@ d) Filtering: Only show node labels with larger Degree (e.g., > 10). How does th
 
 (2) Instead of using node-link diagram, explore different options and generate a visualization to show the structure of the same network. The visualization can include multiple charts or mix different types of charts.  
 • All visualizations need to be properly annotated and labeled to help clearly explain what the visualizations show.  
-• Explain in your report:  
+
+Explain in your report:  
 • what you intend to show in the visualization  
 • the rationale for your design (why is it an effective representation for the things you intend to show?)  
 • in the beginning of the report, describe your team with names and PITT IDs of all members, and one paragraph to briefly describe the contribution of each member  
+
+
+[Reference](http://bl.ocks.org/hungvietdo/7f8df0bcd7fba7e531e6)
