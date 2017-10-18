@@ -31,6 +31,7 @@ Explain in your report:
 ## Notice:
 The model.html is the graph we chosen. All necessery css and js are under script folder. The data for model.html is miserables.json.  
 The graph.html is what lin's example. Data is also miserables.json.  
+Data.json has changed: "Source" -> "source","Target"->"target". Beacase d3 must use "source" and "target" to build link, please re-pull all files and do not change data.json.  
 All of our work should like the first one p1/p2.html at root folder, js and css codes in script folder, but put data.json in the data folder.  
 After work, we will remove all other unnecessery things.  
 [Reference](http://bl.ocks.org/hungvietdo/7f8df0bcd7fba7e531e6)
