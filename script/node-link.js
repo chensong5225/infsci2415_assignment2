@@ -8,7 +8,7 @@ var width = 850,
 
     d3.select("body").insert("p", ":first-child").append("input")
         .attr("type", "range")
-        .attr("min", "1")
+        .attr("min", "0")
         .attr("max", "25")
         .attr("value", init)
         .attr("id", "filter");
@@ -46,19 +46,20 @@ d3.json("data/data.json", function(error, graph) {
 
   var node = svgnode.selectAll(".node")
       .data(graph.nodes)
-    .enter().append("g")
-
-    node.append("text")
-      .attr("dx", 15)
-      .attr("dy", ".35em")
-      .text(function(d) { if(d.Degree > 99) return d.Label })
-
-     node.append("circle").attr("class", "node")
+    .enter().append("circle")
+      .attr("class", "node")
       .attr("r", function(d) {return 3*Math.sqrt(d.Degree);})
       .style("fill", function(d) { return color_config[d.Class]; })
-      .call(force.drag)
+      .call(force.drag);
 
-
+  var nodelabels = svgnode.selectAll(".nodelabel") 
+       .data(graph.nodes)
+       .enter()
+       .append("text")
+       .attr({"x":function(d){return d.x;},
+              "y":function(d){return d.y;},
+              "class":"nodelabel"})
+       .text(function(d){if(d.Degree > 99) return d.Label;});
 
   node.append("title")
       .text(function(d) { return d.Label; });
@@ -69,7 +70,11 @@ d3.json("data/data.json", function(error, graph) {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+     node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+
+        nodelabels.attr("x", function(d) { return d.x+10; }) 
+                  .attr("y", function(d) { return d.y; });
   });
 
 
@@ -87,13 +92,13 @@ d3.select("body").select("p").text(text_slider+ x);
 var degree = x;
 console.log(degree);
 var svg = d3.select("#header1").select("svg");
-svg.selectAll(".node").remove()
-svg.selectAll("g").selectAll("text").remove()
-svg.selectAll(".link").remove()
+svg.selectAll("circle").remove();
+svg.selectAll("line").remove();
+svg.selectAll("text").remove();
 d3.json("data/data.json", function(error, graph) {
   if (error) throw error;
 
-  force
+ force
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
@@ -107,19 +112,20 @@ d3.json("data/data.json", function(error, graph) {
 
   var node = svgnode.selectAll(".node")
       .data(graph.nodes)
-    .enter().append("g")
-
-    node.append("text")
-      .attr("dx", 15)
-      .attr("dy", ".35em")
-      .text(function(d) { if(d.Degree > degree) return d.Label })
-
-     node.append("circle").attr("class", "node")
+    .enter().append("circle")
+      .attr("class", "node")
       .attr("r", function(d) {return 3*Math.sqrt(d.Degree);})
       .style("fill", function(d) { return color_config[d.Class]; })
-      .call(force.drag)
+      .call(force.drag);
 
-
+  var nodelabels = svgnode.selectAll(".nodelabel") 
+       .data(graph.nodes)
+       .enter()
+       .append("text")
+       .attr({"x":function(d){return d.x;},
+              "y":function(d){return d.y;},
+              "class":"nodelabel"})
+       .text(function(d){if(d.Degree > degree) return d.Label;});
 
   node.append("title")
       .text(function(d) { return d.Label; });
@@ -130,7 +136,11 @@ d3.json("data/data.json", function(error, graph) {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-   node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+     node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+
+        nodelabels.attr("x", function(d) { return d.x+10; }) 
+                  .attr("y", function(d) { return d.y; });
   });
 
 
