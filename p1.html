@@ -1,76 +1,66 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html class="ocks-org do-not-copy">
+<head>
+
+
 <style>
-
-.links line {
-  stroke: #999;
-  stroke-opacity: 0.6;
+.link {
+  stroke: #ccc;
 }
-
-.nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
 }
-
 </style>
-<svg width="960" height="600"></svg>
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
-
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height");
-
-var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-var simulation = d3.forceSimulation()
-    .force("link", d3.forceLink().id(function(d) { return d.id; }))
-    .force("charge", d3.forceManyBody())
-    .force("center", d3.forceCenter(width / 2, height / 2));
-
-d3.json("data/data.json", function(error, graph) {
-  if (error) throw error;
-
-    var link = svg.append("g")
-      .attr("class", "links")
-    .selectAll("line")
-    .data(graph.link)
-    .enter()
-    .append("line")
-      .attr("stroke-width", 11 );
-
-  var node = svg.append("g")
-      .attr("class", "nodes")
-    .selectAll("circle")
-    .data(graph.nodes)
-    .enter().append("circle")
-      .attr("r", function(d){ return d.Degree})
-
-    node.append("title")
-      .text(function(d) { return d.Label; });
-  simulation
-      .nodes(graph.nodes)
-      .on("tick", ticked);
-  simulation.force("link")
-      .links(graph.link);
-
-  function ticked() {
-    link
-        .attr("x1", function(d) { 
-console.log(d.Source.x)
-          return d.Source.x; })
-        .attr("y1", function(d) { return d.Source.y; })
-        .attr("x2", function(d) { return d.Target.x; })
-        .attr("y2", function(d) { return d.Target.y; });
-
-    node
-        .attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  }
-  }
-)
+  <link type="text/css" href="script/style.css" rel="stylesheet" /> 
+  <link type="text/css" href="script/css.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="script/d3slider/d3.slider.css" media="screen" />
 
 
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+  <script src="script/legend.js"></script>
+  <script src="script/d3slider/d3.slider.js"></script>
 
-</script>
+</head>
+<body>
+    <div>
+    <div id="slider"></div>
+
+    <div width="100%" id="header1"> </div>
+
+  <article style="width:1020px">
+     <h3 >Adjacency Matrix View</h3> 
+       <section id="header2" style="float:left;width:750px">
+      
+          </section>
+
+             <aside style="font-style:italic;
+        float:right;width:250px;
+        border:1px solid;
+         margin: 5em auto auto auto;"
+
+        >
+           
+            <p>Order: <select id="order">
+    <option value="name">By Name</option>
+    <option value="count">By Number of Links</option>
+    <option value="group">By Region</option>
+  </select>
+
+  <p>Built with <a href="http://d3js.org/">d3.js</a>.
+             </aside>
+      
+  </article>
+  
+ 
+ <h2 > Reference </h2>
+    Force-Directed Graph: <a href="http://bl.ocks.org/mbostock/4062045" target="_blank"> http://bl.ocks.org/mbostock/4062045 </a><br>
+    Matrix View: <a href="https://bost.ocks.org/mike/miserables/" target="_blank"> https://bost.ocks.org/mike/miserables/ </a>
+
+    <script type="text/javascript" src="script/node-link.js"></script>
+     <script type="text/javascript" src="script/matrix-view.js"></script>
+     
+   <div>
+</body>
+</html>
