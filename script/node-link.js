@@ -1,6 +1,6 @@
+
 var width = 850,
     height = 700;
-
 
   headline = "You can drag slider to change filter ";
   text_slider = "Current filter is dergree > "
@@ -37,6 +37,12 @@ d3.json("data/data.json", function(error, graph) {
       .links(graph.links)
       .start();
 
+var linkedByIndex = {};
+links= graph.links
+links.forEach(function(d) {
+  linkedByIndex[d.source.index + "," + d.target.index] = true;
+});
+
   var link = svgnode.selectAll(".link")
       .data(graph.links)
     .enter().append("line")
@@ -50,7 +56,10 @@ d3.json("data/data.json", function(error, graph) {
       .attr("class", "node")
       .attr("r", function(d) {return 3*Math.sqrt(d.Degree);})
       .style("fill", function(d) { return color_config[d.Class]; })
-      .call(force.drag);
+      .call(force.drag)
+      .on("mouseover", mouseOverFunction)
+      .on("mouseout", mouseOutFunction);
+
 
   var nodelabels = svgnode.selectAll(".nodelabel") 
        .data(graph.nodes)
@@ -78,23 +87,67 @@ d3.json("data/data.json", function(error, graph) {
   });
 
 
+
   d3.select("#filter").on("input", function() { 
-    console.log(this.value);
     updategraph(this.value);
 
 });
 
 
 
+
+
+
+function mouseOverFunction(d){
+  var circle = d3.select(this);
+  console.log(node);
+  node
+    .style("opacity", function(o) {
+        return isConnected(o, d) ? 1.0 : 0.2 ;
+      })
+      .style("stroke", function(o) {
+    if(isConnected(o, d))
+        return "black";
+      });
+}
+
+function isConnected(a,b){
+  return linkedByIndex[a.index +","+ b.index]||linkedByIndex[b.index +","+ a.index]||a.index==b.index;
+}
+
+function mouseOutFunction() {
+
+  var circle = d3.select(this);
+
+  node
+    .style("opacity", 1.0)
+    .style("stroke","white")
+  link
+    .transition(500);
+  circle
+    .transition(500)
+    
+}
+
+
 updategraph = function(x){
 
 d3.select("body").select("p").text(text_slider+ x);
 var degree = x;
-console.log(degree);
+
+var width = 850,
+    height = 700;
+
 var svg = d3.select("#header1").select("svg");
 svg.selectAll("circle").remove();
 svg.selectAll("line").remove();
 svg.selectAll("text").remove();
+svg.remove();
+
+var svgnode = d3.select("#header1").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
 d3.json("data/data.json", function(error, graph) {
   if (error) throw error;
 
@@ -102,6 +155,7 @@ d3.json("data/data.json", function(error, graph) {
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
+
 
   var link = svgnode.selectAll(".link")
       .data(graph.links)
@@ -116,7 +170,9 @@ d3.json("data/data.json", function(error, graph) {
       .attr("class", "node")
       .attr("r", function(d) {return 3*Math.sqrt(d.Degree);})
       .style("fill", function(d) { return color_config[d.Class]; })
-      .call(force.drag);
+      .call(force.drag)
+      .on("mouseover", mouseOverFunction)
+      .on("mouseout", mouseOutFunction);
 
   var nodelabels = svgnode.selectAll(".nodelabel") 
        .data(graph.nodes)
@@ -139,13 +195,54 @@ d3.json("data/data.json", function(error, graph) {
      node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
 
-        nodelabels.attr("x", function(d) { return d.x+10; }) 
+      nodelabels.attr("x", function(d) { return d.x+10; }) 
                   .attr("y", function(d) { return d.y; });
   });
 
 
+
+
+function mouseOverFunction(d){
+  var circle = d3.select(this);
+  console.log(node);
+  node
+    .style("opacity", function(o) {
+        return isConnected(o, d) ? 1.0 : 0.2 ;
+      })
+      .style("stroke", function(o) {
+    if(isConnected(o, d))
+        return "black";
+      });
+  nodelabels
+    .style("opacity", function(o) {
+        return isConnected(o, d) ? 1.0 : 0.2 ;
+      })
+}
+
+function isConnected(a,b){
+  return linkedByIndex[a.index +","+ b.index]||linkedByIndex[b.index +","+ a.index]||a.index==b.index;
+}
+
+function mouseOutFunction() {
+
+  var circle = d3.select(this);
+  nodelabels
+    .style("opacity", 1.0)
+  node
+    .style("opacity", 1.0)
+    .style("stroke","white")
+  link
+    .transition(500);
+  circle
+    .transition(500)
+    
+}
+
 })
 }
+
+
+
 
 
 });

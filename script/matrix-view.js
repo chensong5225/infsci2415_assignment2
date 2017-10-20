@@ -6,6 +6,8 @@ var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),
     c = d3.scale.category10().domain(d3.range(10));
 
+
+    
 var svg = d3.select("#header2").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -105,7 +107,8 @@ sampleCategoricalData[0]="Different Region";
         .attr("width", x.rangeBand())
         .attr("height", x.rangeBand())
         .style("fill-opacity", function(d) { return z(d.z); })
-        .style("fill", function(d) { return nodes[d.x].group == nodes[d.y].group ? c(nodes[d.x].group) : c(0); })
+        .style("fill", function(d) { 
+          return nodes[d.x].group == nodes[d.y].group ? c(nodes[d.x].group) : c(0); })
         .on("mouseover", mouseover)
         .on("mouseout", mouseout);
   }
