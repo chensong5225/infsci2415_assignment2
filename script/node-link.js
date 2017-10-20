@@ -1,5 +1,5 @@
 
-var width = 850,
+var width = 880,
     height = 700;
 
   headline = "You can drag slider to change filter ";
@@ -16,6 +16,8 @@ var width = 850,
     d3.select("body").insert("p", ":first-child").text(headline);
 
 
+
+
 var color = d3.scale.category20();
 
 var color_config = {"c":"#FF0000","n":"#008000","l":"#1E90FF"};
@@ -28,6 +30,45 @@ var force = d3.layout.force()
 var svgnode = d3.select("#header1").append("svg")
     .attr("width", width)
     .attr("height", height);
+
+
+ var g = d3.select("#header1").select("svg")
+  g.append("circle")
+   .style("fill", "#FF0000")
+   .attr("cx",720)
+   .attr("cy",50)
+   .attr("r",10)
+  g.append("text")
+   .attr("class","red")
+   .attr("x",740)
+   .attr("y",55)
+   .attr("font-size","20px")
+   .text("Conservative")
+
+  g.append("circle")
+   .style("fill", "#008000")
+   .attr("cx",720)
+   .attr("cy",100)
+   .attr("r",10)
+  g.append("text")
+   .attr("class","green")
+   .attr("x",740)
+   .attr("y",105)
+   .attr("font-size","20px")
+   .text("Neutral")
+
+
+  g.append("circle")
+   .style("fill", "#1E90FF")
+   .attr("cx",720)
+   .attr("cy",150)
+   .attr("r",10)
+  g.append("text")
+   .attr("class","blue")
+   .attr("x",743)
+   .attr("y",155)
+   .attr("font-size","20px")
+   .text("Liberal")
 
 d3.json("data/data.json", function(error, graph) {
   if (error) throw error;
@@ -92,8 +133,6 @@ links.forEach(function(d) {
     updategraph(this.value);
 
 });
-
-
 
 
 
@@ -182,6 +221,7 @@ d3.json("data/data.json", function(error, graph) {
               "y":function(d){return d.y;},
               "class":"nodelabel"})
        .text(function(d){if(d.Degree > degree) return d.Label;});
+
 
   node.append("title")
       .text(function(d) { return d.Label; });
