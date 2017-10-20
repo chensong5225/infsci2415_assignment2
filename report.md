@@ -50,7 +50,9 @@ We also add a mouse hover function to this visualization: when pointing one node
 
 **Summary of this visualization:**
 
-Since the Force Directed Layout naturally shows the clusters, we can see the relationship between nodes' Class and their clusters in this visualization. Basically conservative books form a cluster and liberal books form another one. Some neutral books go with conservative books and some go with liberal books. 
+Since the Force Directed Layout naturally shows the clusters, we can see the relationship between nodes' Classes and their clusters in this visualization. Basically conservative books form a cluster and liberal books form another one. The highlight function emphasizes this pattern again: when we highlight all connected books with a conservative book, most of them are red, and most of the books connected with a liberal book are blue.
+
+This relationship between nodes' Classes and their clusters tells us there is a potential preference of the users brought different political books: a user brought a conservative book might buy more conservative books, and a user brought a liberal book might buy more liberal books. It is possible that this preference comes from the users' political affinities.
 
 **Screenshots:**
 
@@ -61,9 +63,12 @@ Since the Force Directed Layout naturally shows the clusters, we can see the rel
 
 #### Visualization II: Instead of using node-link diagram, explore different options and generate a visualization to show the structure of the same network. The visualization can include multiple charts or mix different types of charts
 
-There are two most efficient ways to visualize graph structures: node-link diagram and adjacency matrix diagram. Since we already created a node-link diagram can show the details of nodes in section I, here we choose to create an adjacency matrix visualization and show some details of the edges.
+There are two most efficient ways to visualize graph structures: node-link diagram and adjacency matrix diagram. Since we already created a node-link diagram can show the details of nodes in section I, here we choose to create an adjacency matrix visualization and show some details of the edges. We found a relationship between nodes' Classes and their clusters in the first visualization, so we also want to make sure of this relationship in our adjacency matrix diagram.
 
-The row and column index of the matrix show the Label field of nodes, which are book names. The color of each grid shows the existence and type of each connection as follow:   
+The row and column index of the matrix show the Label field of nodes, which are book names. The texts of indices are colored by red, blue and green based on the nodes' Classes as in section I.
+
+The color of each grid shows the existence and type of each connection as follow:   
+* white: no connection,  
 * deep red: c-c connection,
 * deep blue: l-l,
 * deep green: n-n,
@@ -71,9 +76,11 @@ The row and column index of the matrix show the Label field of nodes, which are 
 * yellow: c-n,
 * light blue: l-n.  
 
-Since we colored nodes with red for c, blue for l and green for n in the first visualization, it will be easy to understand that the colors of edges in this visualization are just the mix of nodes' colors. For users who still feel not familiar with the colors, we also have annotation for the color usage at the right side of the diagram.
+Since we colored nodes with red for c, blue for l and green for n in the first visualization, it will be easy to understand that the colors of grids/edges in this visualization are just the mix of nodes' colors. For users who still feel not familiar with the colors, we also have annotation for the color usage at the right side of the diagram.
 
-Another function of this visualization is that we add a scroll list to sort all the nodes through different ways: by their names (alphabetical order), by degrees of nodes and by clusters.
+Another function of this visualization is that we add a scroll list to sort all the nodes through different ways: by their names (alphabetical order), by degrees of nodes and by classes of nodes.
+
+After sorting by classes, it is easy to see that most edges are c-c or l-l. We also have some n-n, n-c and n-l, but only a few c-l connections. This suggests again that people have a preference to buy similar political books.  
 
 
 **Screenshots:**
@@ -82,7 +89,7 @@ Another function of this visualization is that we add a scroll list to sort all 
 ![]()  
 ![]()  
 
-Please reference .html for the source code.   
+**Please reference .html for the source code.**   
 
 
 ### Reference:
