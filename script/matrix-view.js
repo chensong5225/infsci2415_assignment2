@@ -15,8 +15,8 @@ var svg = d3.select("#header2").append("svg")
 
 d3.json("data/data.json", function(miserables) {
   var matrix = [],
-      nodes = data.nodes,
-      links = data.links,
+      nodes = miserables.nodes ,
+      links = miserables.links,
       n = nodes.length,
       sampleCategoricalData =[];
 
