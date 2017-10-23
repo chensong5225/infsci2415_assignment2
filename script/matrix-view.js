@@ -1,6 +1,6 @@
-var margin = {top: 200, right: 200, bottom: 100, left: 250},
-    width = 1500,
-    height = 1500;
+var margin = {top: 200, right: 200, bottom: 100, left: 200},
+    width = 800,
+    height = 800;
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true),

@@ -112,7 +112,7 @@ links.forEach(function(d) {
        .text(function(d){if(d.Degree > 99) return d.Label;});
 
   node.append("title")
-      .text(function(d) { return d.Label; });
+      .text(function(d) { return d.Label+"\n"+"Degree: "+d.Degree; });
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })

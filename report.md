@@ -32,7 +32,7 @@ The annotation of the colors we used is at the top-right conner of the diagram.
 
 **b) Node size: Adjust the size of the nodes based on the nodes’ “Degree” field. You may try different scaling methods (linear, square root, logarithm, etc.)**  
 
-We encode nodes' Degree or their numbers of connections with node size. Since the original degree of nodes has a large range, we scale it by first taking a square root and then multiplied by 3.    
+We encode nodes' Degree or their numbers of connections with node size. Since the original degree of nodes has a large range, we scale it by first taking a square root. This can shrink the difference of size between each node. And then multiplied by 3 to make sure the small node is visiable and interactable.    
 
 **c) Node label: Show the label of each node based on the node’s “Label” field.**  
 
