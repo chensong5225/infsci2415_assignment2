@@ -54,7 +54,7 @@ sampleCategoricalData[5]="n-c";
                     .inputScale(c,sampleCategoricalData)
                     .cellStepping(10);
 
-  d3.selectAll("svg")
+  d3.select("#header2").select("svg")
 .append("g").attr("transform", "translate("+(width+130)+",250)").attr("Class", "legend").call(verticalLegend);
 
   // Precompute the orders.
