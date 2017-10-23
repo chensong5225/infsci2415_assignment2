@@ -5,46 +5,46 @@ html,body,#wrapper {
 	padding: 5px 5px 5px 5px;
      padding-top: 20px;
 }
- 
+
 .chart {
 	font-family: Arial, sans-serif;
 	font-size: 12px;
-	
+
 }
- 
+
 .axis path,.axis line {
 	fill: none;
 	stroke: #000;
 	shape-rendering: crispEdges;
 }
- 
+
 .bar {
 	fill: #33b5e5;
 }
- 
+
 .bar-failed {
 	fill: #CC0000;
 }
- 
+
 .bar-running {
 	fill: #669900;
 }
- 
+
 .bar-succeeded {
 	fill: #33b5e5;
 }
- 
+
 .bar-killed {
-	fill: #ffbb33; 
+	fill: #ffbb33;
 }
- 
+
 
 #header2 {
 	position: center;
 	top: 0;
 	left: 10px;
 	z-index: 10;
-	 
+
 }
 .node {
   stroke: #fff;
@@ -63,7 +63,9 @@ line {
 }
 
 text.active {
-  fill: red;
+	font-weight: bold;
+	text-decoration: underline;
+	font-size: 15px;
 }
 
 .node text {

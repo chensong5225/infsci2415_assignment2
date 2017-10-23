@@ -1,5 +1,5 @@
 d3.svg.legend = function() {
-    
+
     var legendValues=[{color: "red", stop: [0,1]},{color: "blue", stop: [1,2]},{color: "purple", stop: [2,3]},{color: "yellow", stop: [3,4]},{color: "Aquamarine", stop: [4,5]}];
     var legenTexts=[];
     var legendScale;
@@ -12,11 +12,11 @@ d3.svg.legend = function() {
     var changeValue = 1;
     var orientation = "horizontal";
     var cellPadding = 0;
-   
+
     function legend(g) {
 
 
-    
+
     function cellRange(valuePosition, changeVal) {
     legendValues[valuePosition].stop[0] += changeVal;
     legendValues[valuePosition - 1].stop[1] += changeVal;
@@ -24,12 +24,13 @@ d3.svg.legend = function() {
     }
 
     function redraw() {
-        
+
         g.selectAll("g.legendCells").data(legendValues).exit().remove();
         g.selectAll("g.legendCells").select("rect").style("fill", function(d) {return d.color});
+        g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(-1300," + (i * (cellHeight + cellPadding)-200) + ")" });
         if (orientation == "vertical") {
             g.selectAll("g.legendCells").select("text.breakLabels").style("display", "block").style("text-anchor", "start").attr("x", cellWidth + cellPadding).attr("y", 5 + (cellHeight / 2)).text(function(d) {return labelFormat(d.stop[0]) + (d.stop[1].length > 0 ? " - " + labelFormat(d.stop[1]) : "")})
-            g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(0," + (i * (cellHeight + cellPadding)) + ")" });
+            // g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(-1300," + (i * (cellHeight + cellPadding)-200) + ")" });
         }
         else {
             g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(" + (i * cellWidth) + ",0)" });
@@ -42,7 +43,7 @@ d3.svg.legend = function() {
     .append("g")
     .attr("class", "legendCells")
     .attr("transform", function(d,i) {return "translate(" + (i * (cellWidth + cellPadding)) + ",0)" })
-    
+
     g.selectAll("g.legendCells")
     .append("rect")
     .attr("height", cellHeight)
@@ -51,7 +52,7 @@ d3.svg.legend = function() {
     //.style("stroke", "black")
     .style("stroke-width", "2px");
 
-    
+
     g.selectAll("g.legendCells")
     .append("text")
     .attr("x", 30)
@@ -60,7 +61,7 @@ d3.svg.legend = function() {
     .text(function(d,i){return legenTexts[i];})
 
     .style("pointer-events", "none");
-    
+
     g.append("text")
     .text(labelUnits)
     .style("font-size",15)
@@ -69,7 +70,7 @@ d3.svg.legend = function() {
     //console.log("aaa" + legenTexts[3]) ;
     redraw();
     }
-    
+
     legend.inputScale = function(newScale,nodes) {
         legenTexts = nodes;
         if (!arguments.length) return scale;
@@ -95,11 +96,11 @@ d3.svg.legend = function() {
                      //console.log(el+nodes[el]);
                 })
             }
-            
+
             return this;
     }
-    
-    
+
+
     legend.scale = function(testValue) {
         var foundColor = legendValues[legendValues.length - 1].color;
         for (el in legendValues) {
@@ -128,26 +129,26 @@ d3.svg.legend = function() {
             cellPadding = newCellPadding;
             return this;
     }
-    
+
     legend.cellExtent = function(incColor,newExtent) {
         var selectedStop = legendValues.filter(function(el) {return el.color == incColor})[0].stop;
         if (arguments.length == 1) return selectedStop;
             legendValues.filter(function(el) {return el.color == incColor})[0].stop = newExtent;
             return this;
     }
-    
+
     legend.cellStepping = function(incStep) {
         if (!arguments.length) return changeValue;
             changeValue = incStep;
             return this;
     }
-    
+
     legend.units = function(incUnits) {
         if (!arguments.length) return labelUnits;
             labelUnits = incUnits;
             return this;
     }
-    
+
     legend.orientation = function(incOrient) {
         if (!arguments.length) return orientation;
             orientation = incOrient;
@@ -163,6 +164,6 @@ d3.svg.legend = function() {
             return this;
     }
 
-return legend;    
-    
+return legend;
+
 }
