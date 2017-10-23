@@ -178,14 +178,11 @@ var width = 850,
     height = 700;
 
 var svg = d3.select("#header1").select("svg");
-svg.selectAll("circle").remove();
-svg.selectAll("line").remove();
-svg.selectAll("text").remove();
-svg.remove();
+svg.selectAll(".node").remove();
+svg.selectAll(".link").remove();
+svg.selectAll(".nodelabel").remove();
 
-var svgnode = d3.select("#header1").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+var svgnode = d3.select("#header1").select("svg")
 
 d3.json("data/data.json", function(error, graph) {
   if (error) throw error;

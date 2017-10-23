@@ -13,7 +13,7 @@ var svg = d3.select("#header2").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("data/data.json", function(miserables) {
+d3.json("data/data.json", function(data) {
   var matrix = [],
       nodes = data.nodes,
       links = data.links,
