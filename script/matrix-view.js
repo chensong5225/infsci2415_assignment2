@@ -17,6 +17,7 @@ d3.json("data/data.json", function(data) {
   var matrix = [],
       nodes = data.nodes ,
       links = data.links,
+
       n = nodes.length,
       sampleCategoricalData =[];
 
