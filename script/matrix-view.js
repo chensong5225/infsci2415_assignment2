@@ -6,7 +6,7 @@ var x = d3.scale.ordinal().rangeBands([0, width]),
     z = d3.scale.linear().domain([0, 4]).clamp(true);
 
 var color = {"c":"#FF0000","n":"#008000","l":"#1E90FF"};
-c_n =  "#804000";
+c_n =  "#DD8669";
 n_l = "#66CCCC";
 c_l = "#8F4880";
 
@@ -55,8 +55,8 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
 
   svglegend = d3.select("#header2").select("svg")
       .append("g").attr("transform", "translate(1180,400)").attr("Class", "legend")
-      
-  
+
+
       svglegend.append("rect")
         .attr("height", 20)
         .attr("width", 30)
@@ -82,7 +82,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
          .attr("y",53)
          .attr("font-size","20px")
          .text("n - n")
-      
+
       svglegend.append("rect")
         .attr("height", 20)
         .attr("width", 30)
@@ -108,7 +108,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
          .attr("y",123)
          .attr("font-size","20px")
          .text("l - n")
-        
+
        svglegend.append("rect")
         .attr("height", 20)
         .attr("width", 30)
@@ -126,7 +126,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
         .attr("height", 20)
         .attr("width", 30)
         .attr("y",175)
-        .style("fill", "#804000")
+        .style("fill", "#DD8669")
         .style("stroke-width", "2px");
       svglegend.append("text")
          .attr("class","n - c")
