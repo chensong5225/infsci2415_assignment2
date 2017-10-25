@@ -231,8 +231,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
   function mouseout() {
 
       d3.selectAll("text").classed("active", false);
-     d3.selectAll("rect").attr("width",x.rangeBand());
-     d3.selectAll("rect").attr("height",x.rangeBand());
+
   }
 
   d3.select("#order")
