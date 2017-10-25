@@ -204,6 +204,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
         .attr("height", x.rangeBand())
         .style("fill-opacity", function(d) { return z(d.z); })
         .on("mouseover", mouseover)
+        .on("mouseout",mouseout)
         .style("fill", function(d) {
           if (nodes[d.x].Class == 'n' &&  nodes[d.y].Class == 'n')
           return color["n"];
@@ -221,8 +222,6 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
   }
 
   function mouseover(p) {
-     console.log("Inside")
-
     d3.selectAll(".row text").classed("active", function(d, i) {
       return i == p.y; });
     d3.selectAll(".column text").classed("active", function(d, i) { return i == p.x; });
@@ -231,7 +230,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
 
   function mouseout() {
 
-    d3.selectAll("text").classed("active", false);
+      d3.selectAll("text").classed("active", false);
      d3.selectAll("rect").attr("width",x.rangeBand());
      d3.selectAll("rect").attr("height",x.rangeBand());
   }
