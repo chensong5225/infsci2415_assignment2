@@ -139,7 +139,6 @@ links.forEach(function(d) {
 
 function mouseOverFunction(d){
   var circle = d3.select(this);
-  console.log(node);
   node
     .style("opacity", function(o) {
         return isConnected(o, d) ? 1.0 : 0.2 ;
@@ -241,7 +240,6 @@ d3.json("data/data.json", function(error, graph) {
 
 function mouseOverFunction(d){
   var circle = d3.select(this);
-  console.log(node);
   node
     .style("opacity", function(o) {
         return isConnected(o, d) ? 1.0 : 0.2 ;

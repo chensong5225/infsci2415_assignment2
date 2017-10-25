@@ -242,9 +242,7 @@ var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
 
 
   function order(value) {
-    console.log(value)
     x.domain(orders[value]);
-    console.log(orders[value])
     var t = svg.transition().duration(1500);
 
     t.selectAll(".row")
