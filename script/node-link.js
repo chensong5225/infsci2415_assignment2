@@ -6,14 +6,14 @@ var width = 880,
   text_slider = "Current filter is dergree > "
   init = 0;
 
-    d3.select("body").insert("p", ":first-child").append("input")
+    d3.select("body").select("slider").insert("p", ":first-child").append("input")
         .attr("type", "range")
         .attr("min", "0")
         .attr("max", "25")
         .attr("value", init)
         .attr("id", "filter");
 
-    d3.select("body").insert("p", ":first-child").text(headline);
+    d3.select("body").select("slider").insert("h3", ":first-child").text(headline);
 
 
 
@@ -171,7 +171,7 @@ function mouseOutFunction() {
 
 updategraph = function(x){
 
-d3.select("body").select("p").text(text_slider+ x);
+d3.select("body").select("h3").text(text_slider+ x);
 var degree = x;
 
 var width = 850,

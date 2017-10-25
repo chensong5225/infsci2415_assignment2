@@ -14,46 +14,51 @@
 </style>
   <link type="text/css" href="script/style.css" rel="stylesheet" />
   <link type="text/css" href="script/css.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="script/d3slider/d3.slider.css" media="screen" />
+  <link type="text/css" href="script/gh-buttons.css" rel="stylesheet" />
+  <!--
+      copyright github
 
+      License
+
+          Public domain: http://unlicense.org/
+
+      Acknowledgements
+
+          Inspired by Michael Henriksen's CSS3 Buttons. Icons from Iconic pack.
+  -->
+    <link rel="stylesheet" type="text/css" href="script/d3slider/d3.slider.css" media="screen" />
 
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
-  <script src="script/legend.js"></script>
   <script src="script/d3slider/d3.slider.js"></script>
 
 </head>
 <body>
-    <div>
-    <div id="slider"></div>
+  <h2>Force-Directed Graph</h2>
+   
+    <slider></slider>
 
     <div width="100%" id="header1"> </div>
 
   <article style="width:1020px">
-     <h3 >Adjacency Matrix View</h3>
-    <h5>sample of color </h5>
-       <section id="header2" style="float:left;width:750px">
+     <h2>Adjacency Matrix View</h2>
 
-          </section>
-
-             <aside style="font-style:italic;
+               <aside style="font-style:italic;
         float:right;width:250px;
         border:1px solid;
-         margin:-5em auto auto auto;"
+         margin:-5em auto auto 50em;"
 
         >
 
 
-        	         	<p>Order: <select id="order">
-        	  <option value="Label">By Label</option>
-        	  <option value="count">By Number of Links</option>
-        	  <option value="Class">By Class</option>
-        	</select>
-
-
-  <p>Built with <a href="http://d3js.org/">d3.js</a>.
+        <p>Order: <select id="order">
+            <option value="Label">By Label</option>
+            <option value="count">By Number of Links</option>
+            <option value="Class">By Class</option>
+          </select>
              </aside>
-
+       <section id="header2" style="float:left;width:750px">
+          </section>
   </article>
 
 

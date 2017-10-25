@@ -27,7 +27,7 @@ d3.svg.legend = function() {
 
         g.selectAll("g.legendCells").data(legendValues).exit().remove();
         g.selectAll("g.legendCells").select("rect").style("fill", function(d) {return d.color});
-        g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(-1300," + (i * (cellHeight + cellPadding)-200) + ")" });
+        g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(955," + (i * (cellHeight + cellPadding)-200) + ")" });
         if (orientation == "vertical") {
             g.selectAll("g.legendCells").select("text.breakLabels").style("display", "block").style("text-anchor", "start").attr("x", cellWidth + cellPadding).attr("y", 5 + (cellHeight / 2)).text(function(d) {return labelFormat(d.stop[0]) + (d.stop[1].length > 0 ? " - " + labelFormat(d.stop[1]) : "")})
             // g.selectAll("g.legendCells").attr("transform", function(d,i) {return "translate(-1300," + (i * (cellHeight + cellPadding)-200) + ")" });
@@ -56,7 +56,8 @@ d3.svg.legend = function() {
     g.selectAll("g.legendCells")
     .append("text")
     .attr("x", 30)
-    .attr("y", 10)
+    .attr("y", 15)
+    .style("font-size","15px")
     //.attr("class", "breakLabels")
     .text(function(d,i){return legenTexts[i];})
 

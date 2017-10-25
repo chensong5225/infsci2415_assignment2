@@ -1,10 +1,16 @@
-var margin = {top: 200, right: 200, bottom: 100, left: 200},
+var margin = {top: 200, right: 300, bottom: 100, left: 200},
     width = 800,
     height = 800;
 
 var x = d3.scale.ordinal().rangeBands([0, width]),
-    z = d3.scale.linear().domain([0, 4]).clamp(true),
-    c = d3.scale.category10().domain(d3.range(6));
+    z = d3.scale.linear().domain([0, 4]).clamp(true);
+
+var color = {"c":"#FF0000","n":"#008000","l":"#1E90FF"};
+c_n =  "#804000";
+n_l = "#66CCCC";
+c_l = "#8F4880";
+
+
 
 var svg = d3.select("#header2").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -37,25 +43,97 @@ d3.json("data/data.json", function(data) {
     nodes[link.target].count++;
     sampleCategoricalData[nodes[link.source].Degree] = nodes[link.source].Class;
   });
-sampleCategoricalData[0]="l-l";
-sampleCategoricalData[1]="l-n";
-sampleCategoricalData[2]="n-n";
-sampleCategoricalData[3]="c-c";
-sampleCategoricalData[4]="c-l";
-sampleCategoricalData[5]="n-c";
+    sampleCategoricalData[0]="l - l";
+    sampleCategoricalData[1]="l - n";
+    sampleCategoricalData[2]="n - n";
+    sampleCategoricalData[3]="c - c";
+    sampleCategoricalData[4]="c - l";
+    sampleCategoricalData[5]="n - c";
 
-  verticalLegend = d3.svg.legend()
-                    .labelFormat("none")
-                    .cellPadding(5)
-                    .units(" ")
-                    .orientation("vertical")
-                    .cellWidth(25)
-                    .cellHeight(18)
-                    .inputScale(c,sampleCategoricalData)
-                    .cellStepping(10);
+var c1 = new Array("#1E90FF","#FF0000","#804000","#008000","#8F4880","#0F8880");
 
-  d3.select("#header2").select("svg")
-.append("g").attr("transform", "translate("+(width+130)+",250)").attr("Class", "legend").call(verticalLegend);
+
+  svglegend = d3.select("#header2").select("svg")
+      .append("g").attr("transform", "translate(1180,400)").attr("Class", "legend")
+      
+  
+      svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .style("fill", "#1E90FF")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","l - l")
+         .attr("x",40)
+         .attr("y",18)
+         .attr("font-size","20px")
+         .text("l - l")
+
+
+      svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .attr("y",35)
+        .style("fill", "#008000")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","n - n")
+         .attr("x",40)
+         .attr("y",53)
+         .attr("font-size","20px")
+         .text("n - n")
+      
+      svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .attr("y",70)
+        .style("fill", "#FF0000")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","c - c")
+         .attr("x",40)
+         .attr("y",88)
+         .attr("font-size","20px")
+         .text("c - c")
+
+      svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .attr("y",105)
+        .style("fill", "#66CCCC")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","l - n")
+         .attr("x",40)
+         .attr("y",123)
+         .attr("font-size","20px")
+         .text("l - n")
+        
+       svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .attr("y",140)
+        .style("fill", "#8F4880")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","c - l")
+         .attr("x",40)
+         .attr("y",158)
+         .attr("font-size","20px")
+         .text("c - l")
+
+       svglegend.append("rect")
+        .attr("height", 20)
+        .attr("width", 30)
+        .attr("y",175)
+        .style("fill", "#804000")
+        .style("stroke-width", "2px");
+      svglegend.append("text")
+         .attr("class","n - c")
+         .attr("x",40)
+         .attr("y",193)
+         .attr("font-size","20px")
+         .text("c - n")
 
   // Precompute the orders.
   var orders = {
@@ -90,14 +168,7 @@ sampleCategoricalData[5]="n-c";
       .attr("text-anchor", "end")
       .style("fill",function(d, i)
         {
-          if(nodes[i].Class == "n")
-            return "green";
-          else if(nodes[i].Class == "l")
-            return "blue";
-          else if(nodes[i].Class == "c")
-            return "red";
-          else
-          return "gray";
+          return color[nodes[i].Class];
         }
     )
       .text(function(d, i) { return nodes[i].Label; });
@@ -118,14 +189,7 @@ sampleCategoricalData[5]="n-c";
       .attr("text-anchor", "start")
       .style("fill",function(d, i)
         {
-          if(nodes[i].Class == "n")
-            return "green";
-          else if(nodes[i].Class == "l")
-            return "blue";
-          else if(nodes[i].Class == "c")
-            return "red";
-          else
-          return "gray";
+        return color[nodes[i].Class];
         }
     )
       .text(function(d, i) { return nodes[i].Label; });
@@ -142,17 +206,17 @@ sampleCategoricalData[5]="n-c";
         .on("mouseover", mouseover)
         .style("fill", function(d) {
           if (nodes[d.x].Class == 'n' &&  nodes[d.y].Class == 'n')
-          return 'green';
+          return color["n"];
         else if (nodes[d.x].Class == 'n' &&  nodes[d.y].Class == 'l' || nodes[d.x].Class == 'l' &&  nodes[d.y].Class == 'n' )
-        return 'orange';
+        return n_l;
       else if (nodes[d.x].Class == 'n' &&  nodes[d.y].Class == 'c' ||nodes[d.x].Class == 'c' &&  nodes[d.y].Class == 'n')
-        return 'brown';
+        return c_n;
       else if (nodes[d.x].Class == 'l' &&  nodes[d.y].Class == 'l')
-        return 'blue';
+        return color["l"];
       else if(nodes[d.x].Class == 'l' &&  nodes[d.y].Class == 'c' || nodes[d.x].Class == 'c' &&  nodes[d.y].Class == 'l')
-        return 'purple';
+        return c_l;
       else if(nodes[d.x].Class == 'c' &&  nodes[d.y].Class == 'c')
-        return 'red';});
+        return color["c"];});
 
   }
 
