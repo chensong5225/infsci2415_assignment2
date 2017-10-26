@@ -102,7 +102,7 @@ links.forEach(function(d) {
       .on("mouseout", mouseOutFunction);
 
 
-  var nodelabels = svgnode.selectAll(".nodelabel") 
+  var nodelabels = svgnode.selectAll(".nodelabel")
        .data(graph.nodes)
        .enter()
        .append("text")
@@ -123,13 +123,13 @@ links.forEach(function(d) {
      node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
 
-        nodelabels.attr("x", function(d) { return d.x+10; }) 
+        nodelabels.attr("x", function(d) { return d.x+10; })
                   .attr("y", function(d) { return d.y; });
   });
 
 
 
-  d3.select("#filter").on("input", function() { 
+  d3.select("#filter").on("input", function() {
     updategraph(this.value);
 
 });
@@ -164,7 +164,7 @@ function mouseOutFunction() {
     .transition(500);
   circle
     .transition(500)
-    
+
 }
 
 
@@ -209,7 +209,7 @@ d3.json("data/data.json", function(error, graph) {
       .on("mouseover", mouseOverFunction)
       .on("mouseout", mouseOutFunction);
 
-  var nodelabels = svgnode.selectAll(".nodelabel") 
+  var nodelabels = svgnode.selectAll(".nodelabel")
        .data(graph.nodes)
        .enter()
        .append("text")
@@ -220,7 +220,7 @@ d3.json("data/data.json", function(error, graph) {
 
 
   node.append("title")
-      .text(function(d) { return d.Label; });
+      .text(function(d) { return d.Label+"\n"+"Degree: "+d.Degree; }); 
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
@@ -231,7 +231,7 @@ d3.json("data/data.json", function(error, graph) {
      node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
 
-      nodelabels.attr("x", function(d) { return d.x+10; }) 
+      nodelabels.attr("x", function(d) { return d.x+10; })
                   .attr("y", function(d) { return d.y; });
   });
 
@@ -270,7 +270,7 @@ function mouseOutFunction() {
     .transition(500);
   circle
     .transition(500)
-    
+
 }
 
 })

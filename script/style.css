@@ -11,8 +11,8 @@ html {
   color: #333;
   font-family: "PT Serif", serif;
   margin: 1em 2em 2em 5em;
-  
-  width: 750px;
+
+  width: 950px;
 }
 
 .ocks-org header,
@@ -38,8 +38,8 @@ html {
 }
 
 h1 {
-  font-size: 64px;
-  font-weight: 300;
+  font-size: 40px;
+  font-weight: 500;
   letter-spacing: -2px;
   margin: .3em 0 .1em 0;
 }
