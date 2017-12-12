@@ -80,7 +80,7 @@ Another function of this visualization is that we add a scroll list to sort all 
 
 After sorting by classes, it is easy to see that most edges are c-c or l-l. We also have some n-n, n-c and n-l, but only a few c-l connections. This suggests again that people have a preference to buy similar political books.  
 
-We also add a mouse hover function in this visualization: when the mouse moves to an exist connection (a not-white grid), the two corresponding nodes indices will be highlight by increasing their font size. This function will help user to locate and two connected nodes based on the edge between them.
+We also add a mouse hover function in this visualization: when the mouse moves to an exist connection (a not-white grid), the two corresponding nodes indices will be highlighted by increasing their font size. This function will help user to locate any two connected nodes based on the edge between them.
 
 
 **Screenshots:**
